@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import Customer from "./components/Customer/Customer";
+import Article from "./components/Article/Article";
+import Order from "./components/Order/Order";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Store Aplicación
+            </Typography>
+            <Button color="inherit" component={Link} to="/">
+              Clientes
+            </Button>
+            <Button color="inherit" component={Link} to="/articles">
+              Artículos
+            </Button>
+            <Button color="inherit" component={Link} to="/purchase-order">
+              Órdenes de Compra
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Routes>
+          <Route path="/" element={<Customer />} />
+          <Route path="/articles" element={<Article />}></Route>
+          <Route path="/purchase-order" element={<Order />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
